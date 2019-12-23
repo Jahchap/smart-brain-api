@@ -68,6 +68,6 @@ app.post('/imageurl', (req, res) => { image.handleImageApiCall(req, res)});
 app.get('*', (req, res) => {res.status(404).send('That page doesn\'t exist!')});
 
 // Set up the port
-app.listen(4000, (req, res) => {
-	console.log("App started on port 4000");
+app.listen(process.env.PORT || 4000, () => {
+	console.log(`App started on port ${process.env.PORT}`);
 });
