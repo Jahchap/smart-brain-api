@@ -14,7 +14,7 @@ const db = require('knex')({
 		connectionString: 'process.env.DATABASE_URL',
 		ssl: true
 	}
-}).once( error, error => console.log('Database Connection', error.message));
+}).pool.once( error, error => console.log('Database Connection', error.message));
 
 /*
 // This is same as the above
