@@ -11,10 +11,10 @@ const image = require('./controllers/image');
 const db = require('knex')({
 	client: 'pg',
 	connection: {
-		connectionString: 'process.env.DATABASE_URL',
+		connection: 'process.env.DATABASE_URL',
 		ssl: true
 	}
-}).pool.once( error, error => console.log('Database Connection', error.message));
+});
 
 /*
 // This is same as the above
