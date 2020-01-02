@@ -42,7 +42,7 @@ app.use(cors());
 
 // Home route
 app.get('/', (req, res) => {
-	res.json('Welcome. Please visit the front end at https://nc-smart-brain.herokuapp.com to access this app')
+	res.json('Welcome. Please visit the front end at nc-smart-brain.herokuapp.com to access this app')
 	// db.select('*')
 	// 	.from('users')
 	// 	.then(allUsers => {
