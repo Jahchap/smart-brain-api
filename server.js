@@ -42,14 +42,15 @@ app.use(cors());
 
 // Home route
 app.get('/', (req, res) => {
-	db.select('*')
-		.from('users')
-		.then(allUsers => {
-			res.json(allUsers);
-		})
-		.catch(err => {
-			res.status(404).json('Unable to Get all Users');
-		})
+	res.json('Welcome. Please visit the front-end at https://nc-smart-brain.herokuapp.com to access this app')
+	// db.select('*')
+	// 	.from('users')
+	// 	.then(allUsers => {
+	// 		res.json(allUsers);
+	// 	})
+	// 	.catch(err => {
+	// 		res.status(404).json('Unable to Get all Users');
+	// 	})
 });
 
 // Register endpoint (route)) '/register'
