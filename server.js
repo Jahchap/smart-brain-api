@@ -14,7 +14,7 @@ const db = require('knex')({
 	client: 'pg',
 	//using ternary operator to check if in production or dev environment
 	//This is for the knex connection
-	connection: process.env.NODE_ENV !== 'production'? {
+	connection: process.env.NODE_ENV === 'production'? {
 		connectionString: process.env.DATABASE_URL,
 		ssl: true
 	} : {
