@@ -2,6 +2,8 @@ const app = require('express')();
 const bodyParser = require('body-parser');
 const bcrypt = require('bcrypt-nodejs');
 const cors = require('cors');
+const dotenv = require('dotenv');
+dotenv.config();
 
 const register = require('./controllers/register');
 const signin = require('./controllers/signin');
@@ -13,6 +15,11 @@ const db = require('knex')({
 	connection: {
 		connectionString: process.env.DATABASE_URL,
 		ssl: true
+	} || {
+		host: DB_HOST,
+		user: DB_USER,
+		password: DB_PASS,
+		database: DB
 	}
 });
 
@@ -22,10 +29,10 @@ const knex = require('knex');
 const db = knex({
 	client: 'pg',
 	connection: {
-		host: '127.0.0.1',
-		user: 'postgres',
-		password: '12345678',
-		database: 'smart-brain'
+		host: DB_HOST,
+		user: DB_USER,
+		password: DB_PASS,
+		database: DB
 	}
 });
 */
@@ -42,15 +49,15 @@ app.use(cors());
 
 // Home route
 app.get('/', (req, res) => {
-	res.json('Welcome. Please visit the front end at nc-smart-brain.herokuapp.com to access this app')
-	// db.select('*')
-	// 	.from('users')
-	// 	.then(allUsers => {
-	// 		res.json(allUsers);
-	// 	})
-	// 	.catch(err => {
-	// 		res.status(404).json('Unable to Get all Users');
-	// 	})
+	// res.json('Welcome. Please visit the front end at nc-smart-brain.herokuapp.com to access this app')
+	db.select('*')
+		.from('users')
+		.then(allUsers => {
+			res.json(allUsers);
+		})
+		.catch(err => {
+			res.status(404).json('Unable to Get all Users');
+		})
 });
 
 // Register endpoint (route)) '/register'
